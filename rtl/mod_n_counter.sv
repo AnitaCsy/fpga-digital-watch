@@ -18,6 +18,7 @@ module mod_n_counter #(
 
   always_comb begin
     if (enable) next_count = count == N_1 ? '0 : count + WIDTH'(1);
+    else next_count = count;
   end
 
 endmodule
