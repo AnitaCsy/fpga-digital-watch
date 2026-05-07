@@ -8,19 +8,20 @@ module pwm_generator #(
     output logic pwm_out
 );
 
-  localparam int WIDTH = $clog2(PERIOD_CYCLES);
-  logic [WIDTH-1:0] count;
+  localparam int Width = $clog2(PERIOD_CYCLES);
+  localparam logic [Width:0] DutyCycles = (Width + 1)'(DUTY_CYCLES);
+  logic [Width-1:0] count;
 
   mod_n_counter #(
       .N(PERIOD_CYCLES),
-      .WIDTH(WIDTH)
-  ) mod_n_counter (
+      .WIDTH(Width)
+  ) mod_n (
       .clk(clk),
       .rst(rst),
       .enable(1'b1),
       .count(count)
   );
 
-  assign pwm_out = (count < DUTY_CYCLES);
+  assign pwm_out = ((Width + 1)'(count) < DutyCycles);
 
 endmodule
