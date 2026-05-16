@@ -17,11 +17,15 @@
 `timescale 1ns / 1ps
 
 module user_top #(
+    /* verilator lint_off UNUSEDPARAM */
     parameter int CYCLES_PER_SECOND = 50_000_000
+    /* verilator lint_on UNUSEDPARAM */
 ) (
     input logic clk,
+    /* verilator lint_off UNUSED */
     input logic [3:0] button,
     input logic [9:0] sw,
+    /* verilator lint_on UNUSED */
     output logic [9:0] led,
     output logic [6:0] hours_disp,
     output logic [6:0] minutes_disp,
